@@ -7,6 +7,7 @@ use App\Models\Document;
 use App\Models\Empleado;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DocumentController extends Controller
@@ -81,6 +82,8 @@ class DocumentController extends Controller
     public function save($id)
     {
         $document = Document::findOrFail($id);
+        $empleado = Auth::user()->empleado;
+        $empleado->documentos()->save($document);
         $filePath = storage_path('app/' . $document->file_path);
 
         return response()->download($filePath, $document->name);

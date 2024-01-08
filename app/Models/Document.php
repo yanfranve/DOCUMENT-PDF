@@ -13,4 +13,8 @@ class Document extends Model
     {
         return asset('storage/app/document/' . $this->file_path);
     }
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class);
+    }
 }

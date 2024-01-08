@@ -32,6 +32,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+// En el modelo User
+public function empleado()
+{
+    return $this->belongsTo(Empleado::class, 'empleado_id');
+}
 
     /**
      * The attributes that should be cast.
